@@ -1,43 +1,30 @@
 //Types
 export type Cambio = "manual" | "automatico" | "";
 
-//Interface
+//Interfaces
 export interface Carro {
-  placa: string;
-  marca: string;
-  modelo: string;
-  cor: string;
-  anoFabricacao: number;
-  anoModelo: number;
-  cambio: Cambio;
+  id?: number;
+  placa?: string;
+  marca?: string;
+  modelo?: string;
+  cor?: string;
+  anoFabricacao?: number;
+  anoModelo?: number;
+  cambio?: Cambio;
 }
 
 export interface CarroFilter {
-  placa: string | undefined;
-  marca: string | undefined;
-  modelo: string | undefined;
-  cor: string | undefined;
-  cambio: string | undefined;
+  placa?: string;
+  marca?: string;
+  modelo?: string;
+  cor?: string;
+  cambio?: string;
   anoModelo: {
-    de: number | undefined;
-    ate: number | undefined;
+    de?: number;
+    ate?: number;
   };
   anoFabricacao: {
-    de: number | undefined;
-    ate: number | undefined;
+    de?: number;
+    ate?: number;
   };
 }
-
-//Props
-export interface CarInfoProps {
-  car: Carro;
-}
-
-export interface CarListProps {
-  list: Carro[];
-}
-
-/*   function teste() {
-    const API_URL = import.meta.env.VITE_API;
-    console.log(BASE_URL);
-  } */
