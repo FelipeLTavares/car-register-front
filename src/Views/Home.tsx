@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import CarList from "../components/CarList/CarList";
-import ListFilter from "../components/ListFilter/ListFilter";
-import { Button } from "../components/UI/GeneralStyles/styles";
+import { useContext, useEffect, useState } from "react";
+import CarList from "../components/List/CarList/CarList";
+import ListFilter from "../components/List/ListFilter/ListFilter";
+import { Button } from "../styles/styles";
 import { Carro } from "../interfaces";
 import { styled } from "@stitches/react";
+import { CarContext } from "../context/CarContext";
+import { API_URL } from "../utils";
 
 const Container = styled("div", {
   width: 360,
@@ -12,25 +14,29 @@ const Container = styled("div", {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  gap: 20,
 });
 
 export default function Home() {
-  const [carros, setCarros] = useState<Carro[] | undefined>();
   const [showFilter, setShowFilter] = useState<boolean>(false);
+  const { cars, SetCars } = useContext(CarContext);
 
   function showHideFilter() {
     setShowFilter(showFilter ? false : true);
   }
 
   async function getCars() {
-    const API_URL = import.meta.env.VITE_API_URL;
-    const carsList = await axios.get(API_URL);
-    setCarros(carsList.data);
+    await axios
+      .get(API_URL)
+      .then((resp) => {
+        SetCars(resp.data);
+      })
+      .catch((err) => {
+        window.alert("Ocorreu um erro. Tente novamente mais tarde.");
+      });
   }
 
   function setCarsOnList(data: Carro[]) {
-    setCarros(data);
+    SetCars(data);
   }
 
   useEffect(() => {
@@ -40,12 +46,10 @@ export default function Home() {
   return (
     <Container>
       <Button type="button" value="Filtro" onClick={showHideFilter} />
-      {showFilter ? <ListFilter set={setCarsOnList} /> : null}
-      {!carros ? (
-        <p>Sem conexão com o BD</p>
-      ) : (
-        <CarList list={carros}></CarList>
-      )}
+      {showFilter ? (
+        <ListFilter set={setCarsOnList} show={showHideFilter} />
+      ) : null}
+      {!cars ? <p>Sem conexão com o BD</p> : <CarList list={cars}></CarList>}
     </Container>
   );
 }
