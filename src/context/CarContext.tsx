@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
 import { Carro } from "../interfaces";
 
-export const CarContext = createContext();
+export const CarContext = createContext({});
 
-export default function CarProvider({ children }) {
+export default function CarProvider({ children }: any) {
   const [cars, setCarros] = useState<Carro[] | undefined>([]);
 
   const SetCars = (carsGetted: Carro[]) => {

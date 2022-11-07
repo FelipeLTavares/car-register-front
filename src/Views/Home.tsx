@@ -18,7 +18,7 @@ const Container = styled("div", {
 
 export default function Home() {
   const [showFilter, setShowFilter] = useState<boolean>(false);
-  const { cars, SetCars } = useContext(CarContext);
+  const { cars, SetCars }: any = useContext(CarContext);
 
   function showHideFilter() {
     setShowFilter(showFilter ? false : true);

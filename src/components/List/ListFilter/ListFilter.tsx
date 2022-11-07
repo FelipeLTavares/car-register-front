@@ -19,7 +19,7 @@ import {
 } from "../../../utils";
 
 export default function ListFilter({ set, show }: ListFilterprops) {
-  const [formData, setFormaData] = useState<CarroFilter>({});
+  const [formData, setFormaData] = useState<CarroFilter>(IntialStateCarFilter);
   const [loading, setLoading] = useState<boolean>(false);
 
   const filterCars = (e: React.SyntheticEvent) => {

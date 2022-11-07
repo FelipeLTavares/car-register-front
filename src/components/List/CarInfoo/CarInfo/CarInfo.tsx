@@ -13,7 +13,7 @@ export default function CarInfo({ car }: CarInfoProps) {
   return (
     <>
       <ItemContainer key={car.placa} onClick={ShowModals}>
-        <Item>{car.placa.toUpperCase()}</Item>
+        <Item>{car.placa!.toUpperCase()}</Item>
       </ItemContainer>
       {!selected ? <CarInfoModals car={car} /> : null}
     </>

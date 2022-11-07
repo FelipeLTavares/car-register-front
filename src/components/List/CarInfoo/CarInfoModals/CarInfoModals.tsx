@@ -8,7 +8,7 @@ import { Container, Option, Info, Options } from "./styles";
 
 export const CarInfoModals = ({ car }: CarInfoModalsProps) => {
   const [mode, setMode] = useState(true);
-  const { SetCars } = useContext(CarContext);
+  const { SetCars }: any = useContext(CarContext);
 
   const changeMode = () => {
     setMode(!mode);

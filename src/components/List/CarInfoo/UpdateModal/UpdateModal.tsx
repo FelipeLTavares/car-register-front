@@ -8,7 +8,7 @@ import {
   UpdateTitle,
   Close,
 } from "./styles";
-import { Carro } from "../../../../interfaces";
+import { Cambio, Carro } from "../../../../interfaces";
 import axios from "axios";
 import { CarContext } from "../../../../context/CarContext";
 import { UpdateModalProps } from "../../../../interfaces/PropsInterfaces";
@@ -16,7 +16,7 @@ import { ages, API_URL, CambioTypes, InitialCarData } from "../../../../utils";
 
 export default function UpdateModal({ carId, changeMode }: UpdateModalProps) {
   const [updateFormData, setUpdateFormData] = useState<Carro>({});
-  const { SetCars } = useContext(CarContext);
+  const { SetCars }: any = useContext(CarContext);
 
   const submitUpdateForm = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -106,7 +106,7 @@ export default function UpdateModal({ carId, changeMode }: UpdateModalProps) {
           onChange={(e) =>
             setUpdateFormData({
               ...updateFormData,
-              cambio: Number(e.target.value),
+              cambio: e.target.value as Cambio,
             })
           }
         >

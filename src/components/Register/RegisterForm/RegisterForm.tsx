@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Carro } from "../../../interfaces";
+import { Cambio, Carro } from "../../../interfaces";
 import { Container } from "./styles";
 import {
   Title,
@@ -115,7 +115,7 @@ export default function RegisterForm() {
           <Select
             required
             onChange={(e) =>
-              setFormaData({ ...formData, cambio: e.target.value })
+              setFormaData({ ...formData, cambio: e.target.value as Cambio })
             }
           >
             <option value="">Câmbio</option>
